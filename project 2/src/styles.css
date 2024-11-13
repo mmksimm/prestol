@@ -1,0 +1,125 @@
+html, body {
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+    overscroll-behavior: none;
+    background-color: var(--tg-theme-bg-color, #121220);
+    color: var(--tg-theme-text-color, white);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.platinum-disk {
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(145deg, 
+        var(--tg-theme-secondary-bg-color, #c0c0c0), 
+        var(--tg-theme-bg-color, #e0e0e0)
+    );
+    border-radius: 50%;
+    box-shadow: 
+        -15px -15px 30px rgba(0,0,0,0.2),
+        15px 15px 30px rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+    cursor: pointer;
+    transition: transform 0.05s linear;
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.record-label {
+    position: absolute;
+    width: 97%;
+    height: 97%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background: repeating-radial-gradient(
+        circle at 50% 50%,
+        rgba(0,0,0,0.2) 0px,
+        rgba(0,0,0,0.2) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+}
+
+.record-label img {
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.center-hole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+    z-index: 3;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.artist-info {
+    text-align: center;
+    max-width: 600px;
+    padding: 25px;
+    background-color: var(--tg-theme-secondary-bg-color, rgba(255,255,255,0.05));
+    border-radius: 15px;
+    border: 1px solid var(--tg-theme-hint-color, rgba(255,255,255,0.1));
+    backdrop-filter: blur(10px);
+}
+
+.artist-info h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: var(--tg-theme-text-color, white);
+}
+
+.artist-info p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--tg-theme-hint-color, rgba(255,255,255,0.7));
+}
+
+.paused {
+    animation-play-state: paused;
+}
+
+@media (max-width: 600px) {
+    .platinum-disk {
+        width: 90vw;
+        height: 90vw;
+    }
+    
+    .artist-info {
+        width: 80vw;
+        margin: 0 20px;
+    }
+}
