@@ -38,16 +38,19 @@ class VinylPlayer {
         this.tg.MainButton.onClick(() => this.togglePlayback());
         this.tg.MainButton.show();
 
-        this.tg.onEvent('themeChanged', () => {
-            document.body.style.backgroundColor = this.tg.backgroundColor;
-            document.body.style.color = this.tg.color;
-        });
+        this.tg.onEvent('themeChanged', this.handleThemeChange.bind(this));
+        this.tg.onEvent('viewportChanged', this.handleViewportChange.bind(this));
+    }
 
-        this.tg.onEvent('viewportChanged', () => {
-            const width = Math.min(window.innerWidth * 0.9, 600);
-            this.platinumDisk.style.width = `${width}px`;
-            this.platinumDisk.style.height = `${width}px`;
-        });
+    private handleThemeChange(): void {
+        document.body.style.backgroundColor = this.tg.backgroundColor;
+        document.body.style.color = this.tg.color;
+    }
+
+    private handleViewportChange(): void {
+        const width = Math.min(window.innerWidth * 0.9, 600);
+        this.platinumDisk.style.width = `${width}px`;
+        this.platinumDisk.style.height = `${width}px`;
     }
 
     private setupEventListeners(): void {
